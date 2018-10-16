@@ -32,9 +32,13 @@
 <li><a href="#storage-component-design">3.1. Storage Component Design</a></li>
 <li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
 <li><a href="#sign-up-login-and-logout-feature">3.3. Sign Up, Login and Logout Feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#adding-accepting-and-deleting-friends-and-friend-requests">3.4. Adding, accepting and deleting friends and friend requests</a></li>
+<li><a href="#current-implementation-for-friendships">3.5. Current Implementation for Friendships</a></li>
+<li><a href="#why-the-current-implementation-for-friendships">3.6. Why the current implementation for Friendships</a></li>
+<li><a href="#alternatives-considered-for-friendships">3.7. Alternatives considered for Friendships</a></li>
+<li><a href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -890,20 +894,102 @@ can be saved.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="adding-accepting-and-deleting-friends-and-friend-requests"><a class="link" href="#adding-accepting-and-deleting-friends-and-friend-requests">3.4. Adding, accepting and deleting friends and friend requests</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="current-implementation-for-friendships"><a class="link" href="#current-implementation-for-friendships">3.5. Current Implementation for Friendships</a></h3>
+<div class="paragraph">
+<p>Friendships can have two statuses - ACCEPTED and PENDING. User A can send a friend request to User B which would then store
+a friendship with User A as PENDING under User B alone. User B can choose to accept or delete the friend request. If User
+chooses to delete the friend request, the PENDING friendship under User B will be deleted. If User B chooses to accept the
+friend request, the friendship status will be changed from PENDING to ACCEPTED for User B and an identical friendship will
+be added to User A, the one who initiated the friendship.</p>
+</div>
+<div class="paragraph">
+<p>Now moving on to deletion of friends. Assuming that two Users C and D are friends with each other, and User C deletes his
+or her friendship with User D. This would delete the friendship stored under both User C and User D even if User D did not
+initiate the deletion of friendship. It is also possible to list the existing list of friends (ACCEPTED) and friend
+requests (PENDING).</p>
+</div>
+<div class="paragraph">
+<p>The Friendship class itself stores 'me' (currently logged in User), 'friendUser' (other party in the friendship),
+'friendshipStatus' (status of the friendship) and 'initiatedBy' (which party the friendship was initiated by).
+There is a restriction such that the 'initiatedBy' must be either 'me' or 'friendUser'. A friendship is immutable once
+created. Friendships are stored as an XML element under users.xml with the four attributes mentioned above.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-the-current-implementation-for-friendships"><a class="link" href="#why-the-current-implementation-for-friendships">3.6. Why the current implementation for Friendships</a></h3>
+<div class="paragraph">
+<p>The PENDING friendships are only stored under the User who did not initiate the friendship. This so that when the
+listFriendRequests command is called so as to allow the User to accept and delete the friend requests accordingly,
+it only makes sense for the User to see the friendships that they wish to accept or delete (i.e. friendships not
+initiated by them). Thus, friend requests are only stored under the User who did not initiate the friendship.</p>
+</div>
+<div class="paragraph">
+<p>There are two separate lists for friendships - one for friend requests and one for friends. This is to aid the listing
+functions and avoid confusion by simplifying the friendships stored under User.</p>
+</div>
+<div class="sect3">
+<h4 id="exceptions-and-why-they-are-thrown"><a class="link" href="#exceptions-and-why-they-are-thrown">3.6.1. Exceptions and why they are thrown</a></h4>
+<div class="paragraph">
+<p>There are several exceptions thrown for the friendship commands. An exception is thrown for all friendship commands
+should there be no User logged in currently. Specifically for the adding of friends (i.e. sending
+friend requests) a User cannot send a request to himself. Moreover, if the User has previously sent a request which has
+yet to be accepted by the other User, the initiating User cannot send another request. However, if the recipient User
+has deleted the friend request, then the initiating User is able to send a new friend request. A blocking feature is to
+be made in v2.0. Moreover, a User cannot send a friend request to another User with whom they are already friends with.</p>
+</div>
+<div class="paragraph">
+<p>When it comes to accepting friendships, there are several exceptions thrown too. If the User tries to accept a friend
+request not in their list of friend requests an exception is thrown. Similarly, an exception is thrown if the User tries
+to delete a friend request not in their list of friend requests or a friend who is not in their list of friends.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alternatives-considered-for-friendships"><a class="link" href="#alternatives-considered-for-friendships">3.7. Alternatives considered for Friendships</a></h3>
+<div class="paragraph">
+<p>For a while, I considered storing all friendships (both friend requests and friends) in the same list. However, I decided
+against this as this made things potentially confusing especially for a new developer coming in to retrieve only friends
+or friend requests.</p>
+</div>
+<div class="sect3">
+<h4 id="xml-storage"><a class="link" href="#xml-storage">3.7.1. XML storage</a></h4>
+<div class="paragraph">
+<p>Initially, I faced a problem balancing making the code more OOP (to preserve the true spirit of software engineering) and
+storing friendships as an XML element. XML elements only take in Strings and not objects. However to store friendships,
+the elements stored include Users ('friendUser', 'me' and 'initiatedBy'). Thus, I considered sacrificing the OOP-nature
+of Friendships as proposed above and instead merely storing usernames as strings for the User.</p>
+</div>
+<div class="paragraph">
+<p>To get around this problem, a hashmap mapping Username to the User is passed to the class doing the XML storage and loading
+of Friendships. Thus, OOP is not sacrificed as User is still the data type of the attributes stored in Friendship and
+Friendships can be created from the XML element with the aid of the hashmap.</p>
+</div>
+<div class="paragraph">
+<p>Initially, I considered asking the initiating User to enter all the information about the other User to add them as a friend.
+This is so that I would be able to construct the User from the the information provided. However, this would be too
+inconvenient for the User and thus the hashmap mentioned before was used.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -934,7 +1020,7 @@ can be saved.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2786,4 +2872,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 13:16:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 15:07:35 UTC</div></div></div></body></html>

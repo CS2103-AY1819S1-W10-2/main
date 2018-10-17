@@ -35,9 +35,10 @@
 <li><a href="#adding-accepting-and-deleting-friends-and-friend-requests">3.4. Adding, accepting and deleting friends and friend requests</a></li>
 <li><a href="#payment-splitting-feature">3.5. Payment Splitting Feature</a></li>
 <li><a href="#jio-feature">3.6. Jio Feature</a></li>
-<li><a href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#timetable-feature">3.7. Timetable Feature</a></li>
+<li><a href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -1128,20 +1129,106 @@ do not touch current user at all, but pass <code>Jio</code> objects on to <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.7. [Proposed] Data Encryption</a></h3>
+<h3 id="timetable-feature"><a class="link" href="#timetable-feature">3.7. Timetable Feature</a></h3>
+<div class="sect3">
+<h4 id="benefits-for-the-user"><a class="link" href="#benefits-for-the-user">3.7.1. Benefits for the user</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Any user using our MakanBook can add their schedules into their profile to block out dates that they are not free.</p>
+</li>
+<li>
+<p>This way, any other person wanting to eat with other users can easily see which times they are free at.</p>
+</li>
+<li>
+<p>MakanBook can also take in a list of people a user wants to eat with and will find the common free slots for them to
+eat at.</p>
+</li>
+<li>
+<p>As an added feature, the user can also list the eating jios that fit his timetable.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7.2. Current Implementation</a></h4>
+<div class="paragraph">
+<p>In MakanBook, we implemented a schedule feature according to the NUS Calendar: 17 weeks in a semester, with each day
+split into 30 minute timeslots. Each timeslot is encapsulated by a <code>Date</code> object which contains the NUS <code>Week</code>, the <code>Day</code> of the week, and the <code>Time</code> that the 30 minute segment starts at.</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="paragraph">
+<p>+
+A <code>UniqueBusySchedule</code> class is then used to encapsulate the list of busy timeslots for any individual user and <code>UniqueBusySchedule</code> contains two key pieces of information:
+the <code>Username</code> to identify which user the schedule belongs to, and a <code>HashMap</code> that stores the list of busy <code>Dates</code> for
+each corresponding NUS week.</p>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="paragraph">
+<p>+
+<strong> Storage of Timetable related Data </strong>
+The entire user&#8217;s <code>UniqueBusySchedule</code> is stored in the users.xml file with each object as an XML element containing the username and all busy dates.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="timetable-commands"><a class="link" href="#timetable-commands">3.7.3. Timetable Commands</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BlockDateCommand</code> is specific to the logged in user, allowing the current <code>User</code> to save a date on his schedule where he is not free. A <code>BlockDateCommandParser</code> is used to parse the arguments necessary.</p>
+</li>
+<li>
+<p><code>FreeDateCommand</code> is specific to the logged in user, allowing him to free up dates on his schedule. A <code>FreeDateCommandParser</code> is used to parse the arguments necessary.</p>
+</li>
+<li>
+<p>(NOT IMPLEMENTED) <code>ListScheduleCommand</code> is specific to the logged in user. The command lists the user&#8217;s schedule for a given NUS week. A parser is necessary.</p>
+</li>
+<li>
+<p>(NOT IMPLEMENTED) <code>FindDateCommand</code> finds common dates to eat between the current user and a list of users he inputs. A parser is necessary.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restrictions-on-usage-of-timetable-commands"><a class="link" href="#restrictions-on-usage-of-timetable-commands">3.7.4. Restrictions on usage of Timetable commands</a></h4>
+<div class="paragraph">
+<p>Timetable Commands can only be used when the <code>User</code> is logged into the MakanBook.
+Exceptions are handled with the <code>NotLoggedInCommandException</code> class in the <code>Logic</code> component.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="low-priority-extensions"><a class="link" href="#low-priority-extensions">3.7.5. Low priority extensions</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>(NOT IMPLEMENTED) <code>AddCalendarCommand</code> allows block date functionality but just using only a simple google calendar login.</p>
+</li>
+<li>
+<p>(NOT IMPLEMENTED) <code>AddNUSMODSCommand</code> allows block date functionality using just a simple NUSMODS link.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.8. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1172,7 +1259,7 @@ do not touch current user at all, but pass <code>Jio</code> objects on to <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3024,4 +3111,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 15:57:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-17 01:34:46 UTC</div></div></div></body></html>

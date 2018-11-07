@@ -16,8 +16,8 @@
 <li><a href="#viewing-help-code-help-code">3.1. Viewing help : <code>help</code></a></li>
 <li><a href="#listing-all-restaurants-code-list-code">3.2. Listing all restaurants : <code>list</code></a></li>
 <li><a href="#locating-restaurants-by-name-code-find-code">3.3. Locating restaurants by name: <code>find</code></a></li>
-<li><a href="#selecting-a-restaurant-code-selectrestaurant-code">3.4. Selecting a restaurant : <code>selectRestaurant</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">3.5. Listing entered commands : <code>history</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">3.4. Listing entered commands : <code>history</code></a></li>
+<li><a href="#selecting-a-restaurant-code-selectrestaurant-code">3.5. Selecting a restaurant : <code>selectRestaurant</code></a></li>
 <li><a href="#signing-up-for-a-makan-book-account-code-signup-code">3.6. Signing Up for a Makan Book Account: <code>signup</code></a></li>
 <li><a href="#log-in-into-an-existing-makan-book-account-code-login-code">3.7. Log In into an existing Makan Book Account: <code>login</code></a></li>
 <li><a href="#log-out-of-an-existing-session-code-logout-code">3.8. Log Out of an existing Session: <code>logout</code></a></li>
@@ -234,9 +234,31 @@ Returns any restaurant having names <code>Betsy</code>, <code>Tim</code>, or <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-restaurant-code-selectrestaurant-code"><a class="link" href="#selecting-a-restaurant-code-selectrestaurant-code">3.4. Selecting a restaurant : <code>selectRestaurant</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.4. Listing entered commands : <code>history</code></a></h3>
 <div class="paragraph">
-<p>Selects the restaurant identified by the index number used in the displayed restaurant list.<br>
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-restaurant-code-selectrestaurant-code"><a class="link" href="#selecting-a-restaurant-code-selectrestaurant-code">3.5. Selecting a restaurant : <code>selectRestaurant</code></a></h3>
+<div class="paragraph">
+<p>Selects the restaurant identified by the index number used in the displayed restaurant list. It will display the webpage of the restaurant
+which contains it&#8217;s details, overall rating and reviews written by users<br>
 Format: <code>selectRestaurant INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -272,27 +294,6 @@ Selects the 2nd restaurant in the address book.</p>
 Selects the 1st restaurant in the results of the <code>find</code> command.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">3.5. Listing entered commands : <code>history</code></a></h3>
-<div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -355,7 +356,11 @@ Format: <code>writeReview INDEX rate/RATING rvw/REVIEW</code></p>
 </div>
 <div class="sect2">
 <h3 id="display-user-profile-code-displayprofile-code"><a class="link" href="#display-user-profile-code-displayprofile-code">3.10. Display User Profile: <code>displayProfile</code></a></h3>
-
+<div class="paragraph">
+<p>Allows a user to view his own profile in the Makan Book. The browser panel will then contains the user&#8217;s details,
+the reviews he&#8217;s written and the list of friends he has.
+Format: <code>displayProfile</code></p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="finding-people-to-eat-with-code-createjio-code"><a class="link" href="#finding-people-to-eat-with-code-createjio-code">3.11. Finding people to eat with: <code>createJio</code></a></h3>
@@ -1340,4 +1345,4 @@ e.g. <code>deleteDebtRequest u/kate amt/7.9 id/181030224951280</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 05:22:29 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 05:23:28 UTC</div></div></div></body></html>

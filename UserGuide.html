@@ -35,8 +35,8 @@
 <li><a href="#accepting-group-requests-code-acceptgroup-code">3.20. Accepting group requests: <code>acceptGroup</code></a></li>
 <li><a href="#deleting-group-requests-code-deletegrouprequest-code">3.21. Deleting group requests: <code>deleteGroupRequest</code></a></li>
 <li><a href="#deleting-groups-code-deletegroup-code">3.22. Deleting groups: <code>deleteGroup</code></a></li>
-<li><a href="#block-unavailable-timeslot-manually-code-blocktime-code">3.23. Block unavailable timeslot manually: <code>blockTime</code></a></li>
-<li><a href="#free-timeslot-manually-code-freetime-code">3.24. Free timeslot manually: <code>freeTime</code></a></li>
+<li><a href="#block-unavailable-timeslot-manually-code-blockdate-code">3.23. Block unavailable timeslot manually: <code>blockDate</code></a></li>
+<li><a href="#free-timeslot-manually-code-freedate-code">3.24. Free timeslot manually: <code>freeDate</code></a></li>
 <li><a href="#see-free-time-code-listscheduleforweek-code">3.25. See Free Time: <code>listScheduleForWeek</code></a></li>
 <li><a href="#find-jios-that-fit-a-user-s-timetable-for-a-given-nus-academic-week-code-findjio-code-coming-in-v2-0">3.26. Find jios that fit a user’s timetable for a given NUS academic week: <code>findJio</code> [COMING IN V2.0]</a></li>
 <li><a href="#find-common-timeslots-with-friends-code-findtime-code-coming-in-v2-0">3.27. Find common timeslots with friends: <code>findTime</code> [COMING IN V2.0]</a></li>
@@ -425,7 +425,7 @@ Format: <code>joinJio n/NAME</code></p>
 <div class="sect2">
 <h3 id="deleting-old-jios-code-deletejio-code"><a class="link" href="#deleting-old-jios-code-deletejio-code">3.13. Deleting old jios: <code>deleteJio</code></a></h3>
 <div class="paragraph">
-<p>Users can specify a jio to delete.<br>
+<p>Users can specify a jio to delete. Only the creator of a jio can delete the jio.<br>
 Format: <code>deleteJio n/NAME</code></p>
 </div>
 <div class="paragraph">
@@ -539,7 +539,7 @@ Format: <code>addGroup g/GROUPNAME</code></p>
 <h3 id="adding-members-code-addmembers-code"><a class="link" href="#adding-members-code-addmembers-code">3.19. Adding members: <code>addMembers</code></a></h3>
 <div class="paragraph">
 <p>A User will create a group and send out invitations to all the other users, which they will then have to accept to join the group. <br>
-Format: <code>addGroup u/GROUPNAME [Users… u/USERNAMES]</code></p>
+Format: <code>addGroup g/GROUPNAME [Users… u/USERNAMES]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -547,7 +547,7 @@ Format: <code>addGroup u/GROUPNAME [Users… u/USERNAMES]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addMembers CS2103 u/chelchia u/evanmok2401 u/katenhy u/yewwoei</code></p>
+<p><code>addMembers g/CS2103 u/chelchia u/evanmok2401 u/katenhy u/yewwoei</code></p>
 </li>
 </ul>
 </div>
@@ -604,10 +604,10 @@ Format: <code>deleteGroup g/GROUPNAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="block-unavailable-timeslot-manually-code-blocktime-code"><a class="link" href="#block-unavailable-timeslot-manually-code-blocktime-code">3.23. Block unavailable timeslot manually: <code>blockTime</code></a></h3>
+<h3 id="block-unavailable-timeslot-manually-code-blockdate-code"><a class="link" href="#block-unavailable-timeslot-manually-code-blockdate-code">3.23. Block unavailable timeslot manually: <code>blockDate</code></a></h3>
 <div class="paragraph">
 <p>Blocks out that timeslot in the user’s timetable to signify that he is busy and not available to eat.<br>
-Format: <code>blockTime w/WEEKNUMBER d/DAY h/HHHH</code></p>
+Format: <code>blockDate w/WEEKNUMBER d/DAY h/HHHH</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -615,16 +615,16 @@ Format: <code>blockTime w/WEEKNUMBER d/DAY h/HHHH</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>blockTime w/5 d/tue h/1800</code></p>
+<p><code>blockDate w/5 d/tue h/1800</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="free-timeslot-manually-code-freetime-code"><a class="link" href="#free-timeslot-manually-code-freetime-code">3.24. Free timeslot manually: <code>freeTime</code></a></h3>
+<h3 id="free-timeslot-manually-code-freedate-code"><a class="link" href="#free-timeslot-manually-code-freedate-code">3.24. Free timeslot manually: <code>freeDate</code></a></h3>
 <div class="paragraph">
 <p>Frees up that timeslot in the user’s timetable to signify that he is free and available to eat.<br>
-Format: <code>freeTime w/recess d/DAY h/HHHH</code></p>
+Format: <code>freeDate w/recess d/DAY h/HHHH</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -632,7 +632,7 @@ Format: <code>freeTime w/recess d/DAY h/HHHH</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>freeTime week5 tues 1900 2100</code></p>
+<p><code>freeDate week5 tues 1900 2100</code></p>
 </li>
 </ul>
 </div>
@@ -1246,7 +1246,7 @@ e.g. <code>writeReview 2 r/5 rvw/I tried the Salmon Mentaiko Chirashi and it was
 <li>
 <p><strong>Create Jio</strong> : <code>createJio</code><br>
 e.g. <code>createJio n/MALA w/1 d/mon h/1200 a/FineFood</code>
-e.g. <code>createJio n/saporeFriends w/1 d/mon t/1800 a/Sapore g/mygroup</code></p>
+e.g. <code>createJio n/saporeFriends w/1 d/mon h/1800 a/Sapore g/mygroup</code></p>
 </li>
 <li>
 <p><strong>Join Jio</strong> : <code>joinJio</code><br>
@@ -1293,19 +1293,16 @@ e.g. deleteGroupRequest g/2103</p>
 e.g. deleteGroup g/2103</p>
 </li>
 <li>
-<p><strong>Block Time</strong> : <code>blockTime w/WEEKNUMBER d/DAY h/HHHH</code>
-e.g. <code>blockTime w/reading d/thu h/1800</code></p>
+<p><strong>Block Date</strong> : <code>blockDate w/WEEKNUMBER d/DAY h/HHHH</code>
+e.g. <code>blockDate w/reading d/thu h/1800</code></p>
 </li>
 <li>
-<p><strong>Free Time</strong> : <code>freeTime w/WEEKNUMBER d/DAY h/HHHH</code>
-e.g. <code>freeTime w/11 d/tue h/0600</code></p>
+<p><strong>Free Date</strong> : <code>freeDate w/WEEKNUMBER d/DAY h/HHHH</code>
+e.g. <code>freeDate w/11 d/tue h/0600</code></p>
 </li>
 <li>
 <p><strong>List User&#8217;s Free Timeslots for a Week</strong> : <code>listScheduleForWeek w/</code>
 e.g. <code>listScheduleForWeek w/6</code></p>
-</li>
-<li>
-<p><strong>Find Jio</strong> : <code>findJio</code></p>
 </li>
 <li>
 <p><strong>Add Debt</strong> : <code>addDebt</code><br>
@@ -1343,4 +1340,4 @@ e.g. <code>deleteDebtRequest u/kate amt/7.9 id/181030224951280</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 03:26:14 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 05:22:29 UTC</div></div></div></body></html>

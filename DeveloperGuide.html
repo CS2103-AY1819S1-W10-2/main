@@ -1045,33 +1045,97 @@ both user. Debtor can then use the <code>acceptDebtRequest</code> to accept the 
 changed to "accepted", or reject and delete the request by <code>deleteDebtRequest</code>, which the the debt record will be
 deleted and removed from the storage. If the debt has been repaid, the creditor can use the <code>clearDebt</code> to mark the
 debt as "cleared". Only the user who initialized the debt(creditor) can clear the debt, and only the other user(debtor)
-can accept or delete the debt. An accepted debt needed to be confirmed by both users.
-==== How the feature is implemented
-The Debt class store creditor, debtor, amount, status and id(timestamp).
+can accept or delete the debt. An accepted debt needed to be confirmed by both users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-the-feature-is-implemented"><a class="link" href="#how-the-feature-is-implemented">3.7.2. How the feature is implemented</a></h4>
+<div class="paragraph">
+<p>The Debt class store creditor, debtor, amount, status and id(timestamp).
 The creditor and debtor must be a user, amount should be larger than zero,
-there are three status - PENDING, ACCEPTED and CLEARED and the id is a 15 digits long string to identify the debt.
-Debts are stored as an XML element under users.xml with all the above attributes mentioned as a string.
-==== Why it is implemented that way
-The debt is under "pending" when it is created, it is treated as a request to the debtor. The debtor needs to accept
-and make it to a "accepted" debt. The "accepted" debt need to be confirm by both side because we want to ensure its
+there are four status - <code>PENDING</code>, <code>ACCEPTED</code>, <code>CLEARED</code> and <code>BALANCED</code> and the id is a 15 digits long string to identify the debt.
+Debts are stored as an XML element under users.xml with all the above attributes mentioned as a string.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-it-is-implemented-that-way"><a class="link" href="#why-it-is-implemented-that-way">3.7.3. Why it is implemented that way</a></h4>
+<div class="paragraph">
+<p>The debt is under <code>PENDING</code> when it is created, it is treated as a request to the debtor. The debtor needs to accept
+and make it to a <code>ACCEPTED</code> debt. The <code>ACCEPTED</code> debt need to be confirm by both side because we want to ensure its
 accuracy. Also, only the user who initialize the debt(creditor) can clear the debt to prevent the debtor clear or delete
-it for self benefit.
-==== Alternatives considered.
-===== Alternative 1: The debt can create by one user and do not need to be accepted
-Pros:
-* Easy to store
-* Easy to mange
-Cons:
-* Lost accuracy
-* Not fair to user
-===== Alternative 2: The debt store separately instead of under user
-Pros:
-* Easy to store
-* Easy to retrieve
-* Easy to implement
-Cons:
-* Cannot achieve confirmation by user
-* It is cumbersome to user</p>
+it for self benefit.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">3.7.4. Alternatives considered.</a></h4>
+<div class="sect4">
+<h5 id="alternative-1-the-debt-can-create-by-one-user-and-do-not-need-to-be-accepted"><a class="link" href="#alternative-1-the-debt-can-create-by-one-user-and-do-not-need-to-be-accepted">Alternative 1: The debt can create by one user and do not need to be accepted</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to store</p>
+</li>
+<li>
+<p>Easy to mange</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Lost accuracy</p>
+</li>
+<li>
+<p>Not fair to user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="alternative-2-the-debt-store-separately-instead-of-under-user"><a class="link" href="#alternative-2-the-debt-store-separately-instead-of-under-user">Alternative 2: The debt store separately instead of under user</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to store</p>
+</li>
+<li>
+<p>Easy to retrieve</p>
+</li>
+<li>
+<p>Easy to implement</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cannot achieve confirmation by user</p>
+</li>
+<li>
+<p>It is cumbersome to user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1106,7 +1170,7 @@ do not touch current user at all, but pass <code>Jio</code> objects on to <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">3.8.3. Alternatives Considered</a></h4>
+<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.8.3. Alternatives Considered</a></h4>
 <div class="sect4">
 <h5 id="aspect-storing-jio"><a class="link" href="#aspect-storing-jio">Aspect: Storing jio</a></h5>
 <div class="ulist">
@@ -3174,4 +3238,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 17:20:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 06:53:19 UTC</div></div></div></body></html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ng Hoi Ying - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Makan Book</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W10-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ng Hoi Ying - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Makan Book is a restaurant guide and application for diners in National University of Singapore (NUS).
+It allows users to write and view reviews for restaurants within NUS.
+Additionally, Users are able to interact with one another to create a more enjoyable experience.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>the ability to add/accept/delete/clear a debt between user</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows user to keep debt record. A debt need to be confirm by both user to ensure the
+accuracy. Also, auto-balancing is implemented as to simplified the record. The record store in both user is
+the same.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because it allows users to keep track on who and how much they
+owns people and who and how much owns them, it effectively solve a common problem between diner on payment splitting.
+Beside, the auto-balancing improve the usability as user can prevent the troublesome for keeping track on multiple debt
+with other user. Also, the storage to both user keep the same recording which greatly reduce the confusion.</p>
+</li>
+<li>
+<p>Highlights: This enhancement required an in-depth knowledge of the whole design, and good communication with other
+group member as it highly depends on other member&#8217;s feature (e.g.login/logout and group).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added 5 <strong>listing command</strong> that allows the user to list different type of debts
+(credit debts, debit debts, debt requests received, debt requests sent, all debts)</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added <strong>selectRestaurant and selectOther command</strong> that allows the user to select item on list panel
+by command.</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: <strong>Modify the GUI</strong> to match the needs of the Makan Book.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows ist panel auto refresh when user data changed, added sub menu bar to allow user choosing different
+type of item to show on list panel, added auto update after user logout(empty the list panel and replace browser panel
+with notLoggedInPage).</p>
+</li>
+<li>
+<p>Justification: The feature improve the product usability the GUI change with user&#8217;s need, and simplified the listing
+process as the user can list everything with a simple click instead of finding/memorising and typing all different
+listing command. This enhancement also prevent the user privacy leakage and improve the security of the product as it
+no longer showing the user&#8217;s information after logout.</p>
+</li>
+<li>
+<p>Highlights: This enhancement required understanding on the GUI and knowledge of JavaFx.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1819s1.github.io/cs2103-dashboard/#=undefined&amp;search=katenhy">here</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed releases <code>v1.1</code> - <code>v1.4</code> (4 releases) on GitHub</p>
+</li>
+<li>
+<p>Wrote additional tests for debt feature to increase coverage by more than 6%
+(Pull requests <a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/305">#305</a>, <a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/308">#308</a>,
+<a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/312">#312</a>, <a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/326">#326</a>)
+<strong>*</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Update Readme.adoc, add mockup UI to match the project: <a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/38">#38</a></p>
+</li>
+<li>
+<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com/CS2103-AY1819S1-W10-2/main/pull/218">#218</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Helped other members on implementation and debugging.</p>
+</li>
+<li>
+<p>PRs reviewed (with non-trivial review comments) for other member.</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>{you can add/remove categories in the list above}</em></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="sent-add-debt-request-code-adddebt-code"><a class="link" href="#sent-add-debt-request-code-adddebt-code">Sent add debt request: <code>addDebt</code></a></h3>
+<div class="paragraph">
+<p>User(Creditor) send a debt request to another user with specific amount.
+Record will be created between two users with a <code>Pending</code> status.<br>
+Format: <code>addDebt u/USERNAME amt/AMOUNT</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addDebt u/Kate123 amt/4.30</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sent-add-debt-request-to-a-group-code-addgroupdebt-code"><a class="link" href="#sent-add-debt-request-to-a-group-code-addgroupdebt-code">Sent add debt request to a group <code>addGroupDebt</code></a></h3>
+<div class="paragraph">
+<p>User(Creditor) send a debt request to all other users in the group with specific amount.
+with amount will split equally to everyone in the group.
+Record will be created between with a <code>Pending</code> status.<br>
+Format: <code>addDebt g/GROUP amt/AMOUNT</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>addGroupDebt g/2103 amt/4.30</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sent-clear-debt-request-code-cleardebt-code"><a class="link" href="#sent-clear-debt-request-code-cleardebt-code">Sent clear debt request: <code>clearDebt</code></a></h3>
+<div class="paragraph">
+<p>User(Creditor) clear amount between users. If the amount is equal to the debt,
+the status will change to <code>Cleared</code>. Otherwise, the amount will be balanced off from the debt.<br>
+Format: <code>clearDebt u/NAME amt/AMOUNT</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clearDebt u/Kate123 amt/4.30</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accept-debt-request-code-acceptdebtrequest-code"><a class="link" href="#accept-debt-request-code-acceptdebtrequest-code">Accept debt request: <code>acceptDebtRequest</code></a></h3>
+<div class="paragraph">
+<p>User(Debtor) accept request from another user(Creditor). The debt status will change
+ from <code>Pending</code> to <code>Accepted</code>. If there are any other accepted debt between this two
+ users, the debt will balanced off as one debt record.<br>
+Format: <code>acceptDebtRequest u/NAME amt/AMOUNT id/ID</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>acceptDebtRequest u/Kate123 amt/4.30 id/18103013460314</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-debt-request-code-deletedebtrequest-code"><a class="link" href="#delete-debt-request-code-deletedebtrequest-code">Delete debt request: <code>deleteDebtRequest</code></a></h3>
+<div class="paragraph">
+<p>User(Debtor) delete/reject request send by other user if it is a wrong request.<br>
+Format: <code>deleteDebtRequest u/USERNAME amt/AMOUNT id/ID</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deleteDebtRequest u/Kate123 amt/4.30 id/18103013460314</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-login-user-s-creditor"><a class="link" href="#list-all-login-user-s-creditor">List all login user&#8217;s creditor</a></h3>
+<div class="paragraph">
+<p>List all creditor of the login user in list panel.
+Format: <code>listCreditor</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-login-user-s-debtor"><a class="link" href="#list-all-login-user-s-debtor">List all login user&#8217;s debtor</a></h3>
+<div class="paragraph">
+<p>List all debtor of the login user in list panel.
+Format: <code>listDebtor</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-login-user-s-debt-request-received"><a class="link" href="#list-all-login-user-s-debt-request-received">List all login user&#8217;s debt request received</a></h3>
+<div class="paragraph">
+<p>List all debt request received by login user from other user in list panel.
+Format: <code>listDebtRequestReceived</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-login-user-s-debt-request-sent"><a class="link" href="#list-all-login-user-s-debt-request-sent">List all login user&#8217;s debt request sent</a></h3>
+<div class="paragraph">
+<p>List all debt request sent by login user to other user in list panel.
+Format: <code>listDebtRequestSent</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-login-user-s-debt-history"><a class="link" href="#list-all-login-user-s-debt-history">List all login user&#8217;s debt history</a></h3>
+<div class="paragraph">
+<p>List all debt history(regardless of status) of the login user in list panel.
+Format: <code>listDebtor</code></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="payment-splitting-feature"><a class="link" href="#payment-splitting-feature">Payment Splitting Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The payment splitting feature allow user to keep record for their debts, especially for gathering. Creditor can use
+the <code>addDebt</code> to create a request to debtor. A record of this debt will be made with a "pending" status and store to
+both user. Debtor can then use the <code>acceptDebtRequest</code> to accept the request from creditor, which the status will be
+changed to "accepted", or reject and delete the request by <code>deleteDebtRequest</code>, which the the debt record will be
+deleted and removed from the storage. If the debt has been repaid, the creditor can use the <code>clearDebt</code> to mark the
+debt as "cleared". Only the user who initialized the debt(creditor) can clear the debt, and only the other user(debtor)
+can accept or delete the debt. An accepted debt needed to be confirmed by both users.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="how-the-feature-is-implemented"><a class="link" href="#how-the-feature-is-implemented">How the feature is implemented</a></h4>
+<div class="paragraph">
+<p>The Debt class store creditor, debtor, amount, status and id(timestamp).
+The creditor and debtor must be a user, amount should be larger than zero,
+there are four status - <code>PENDING</code>, <code>ACCEPTED</code>, <code>CLEARED</code> and <code>BALANCED</code> and the id is a 15 digits long string to identify the debt.
+Debts are stored as an XML element under users.xml with all the above attributes mentioned as a string.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="why-it-is-implemented-that-way"><a class="link" href="#why-it-is-implemented-that-way">Why it is implemented that way</a></h4>
+<div class="paragraph">
+<p>The debt is under <code>PENDING</code> when it is created, it is treated as a request to the debtor. The debtor needs to accept
+and make it to a <code>ACCEPTED</code> debt. The <code>ACCEPTED</code> debt need to be confirm by both side because we want to ensure its
+accuracy. Also, only the user who initialize the debt(creditor) can clear the debt to prevent the debtor clear or delete
+it for self benefit.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">Alternatives considered.</a></h4>
+<div class="sect4">
+<h5 id="alternative-1-the-debt-can-create-by-one-user-and-do-not-need-to-be-accepted"><a class="link" href="#alternative-1-the-debt-can-create-by-one-user-and-do-not-need-to-be-accepted">Alternative 1: The debt can create by one user and do not need to be accepted</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to store</p>
+</li>
+<li>
+<p>Easy to mange</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Lost accuracy</p>
+</li>
+<li>
+<p>Not fair to user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="alternative-2-the-debt-store-separately-instead-of-under-user"><a class="link" href="#alternative-2-the-debt-store-separately-instead-of-under-user">Alternative 2: The debt store separately instead of under user</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to store</p>
+</li>
+<li>
+<p>Easy to retrieve</p>
+</li>
+<li>
+<p>Easy to implement</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cannot achieve confirmation by user</p>
+</li>
+<li>
+<p>It is cumbersome to user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 06:53:19 UTC</div></div></div></body></html>

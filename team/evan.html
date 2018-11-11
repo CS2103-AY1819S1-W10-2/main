@@ -135,6 +135,163 @@ reviews for restaurants within NUS. Additionally, Users are able to interact wit
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="link" href="#quick-start">Quick Start</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
+</li>
+<li>
+<p>Download the latest <code>makanbook.jar</code> <a href="{repoURL}/releases">here</a>.</p>
+</li>
+<li>
+<p>Copy the file to the folder you want to use as the home folder for your Makan Book.</p>
+</li>
+<li>
+<p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+</li>
+<li>
+<p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
+</li>
+<li>
+<p>Some example commands you can try:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong><code>list</code></strong> : lists all restaurants</p>
+</li>
+<li>
+<p><strong><code>signup</code></strong><code>u/johnnydoe pwd/pAssw0rd n/John Doe p/98765432 e/johnd@example.com</code> : Sign Up for an account in the Makan Book.
+Allows you to use Makan Book&#8217;s many features</p>
+</li>
+<li>
+<p><strong><code>exit</code></strong> : exits the app</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Refer to <a href="#Features">Features</a> for details of each command.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="Features"><a class="link" href="#Features">Features</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/John Doe</code>.</p>
+</li>
+<li>
+<p>Items in square brackets are optional e.g <code>n/NAME [u/USERNAME]</code> can be used as <code>n/Waa Cow u/navekom</code> or as <code>n/Waa Cow</code>.</p>
+</li>
+<li>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[u/USERNAME]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>u/navekom</code>, <code>u/katespade u/themyth</code> etc.</p>
+</li>
+<li>
+<p>Parameters can be in any order e.g. if the command specifies <code>u/USERNAME pwd/PASSWORD</code>, <code>pwd/PASSWORD u/USERNAME</code> is also acceptable.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">Viewing help : <code>help</code></a></h3>
+<div class="paragraph">
+<p>Format: <code>help</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-restaurants-code-list-code"><a class="link" href="#listing-all-restaurants-code-list-code">Listing all restaurants : <code>list</code></a></h3>
+<div class="paragraph">
+<p>Shows a list of all restaurants in the makan book.<br>
+Format: <code>list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locating-restaurants-by-name-code-find-code"><a class="link" href="#locating-restaurants-by-name-code-find-code">Locating restaurants by name: <code>find</code></a></h3>
+<div class="paragraph">
+<p>Finds restaurants whose names contain any of the given keywords.<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>Waa Cow</code> will match <code>waa cow</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Cow Waa</code> will match <code>Waa Cow</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Cow</code> will not match <code>Co</code></p>
+</li>
+<li>
+<p>Restaurants matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Waa Lao</code> will return <code>Waa Cow</code>, <code>Lao Ban</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find Waa Lao</code><br>
+Returns <code>Waa Cow</code> and <code>Lao Ban</code></p>
+</li>
+<li>
+<p><code>find Din Tai Fung</code><br>
+Returns any restaurant having names <code>Din</code>, <code>Tai</code>, or <code>Fung</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">Listing entered commands : <code>history</code></a></h3>
+<div class="paragraph">
+<p>Lists all the commands that you have entered in reverse chronological order.<br>
+Format: <code>history</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 <div class="sect2">
 <h3 id="selecting-a-restaurant-code-selectrestaurant-code"><a class="link" href="#selecting-a-restaurant-code-selectrestaurant-code">Selecting a restaurant : <code>selectRestaurant</code></a></h3>
 <div class="paragraph">
@@ -170,7 +327,7 @@ Format: <code>selectRestaurant INDEX</code></p>
 Selects the 2nd restaurant in the address book.</p>
 </li>
 <li>
-<p><code>find Betsy</code><br>
+<p><code>find Hwangs</code><br>
 <code>select 1</code><br>
 Selects the 1st restaurant in the results of the <code>find</code> command.</p>
 </li>
@@ -180,7 +337,7 @@ Selects the 1st restaurant in the results of the <code>find</code> command.</p>
 <div class="sect2">
 <h3 id="signing-up-for-a-makan-book-account-code-signup-code"><a class="link" href="#signing-up-for-a-makan-book-account-code-signup-code">Signing Up for a Makan Book Account: <code>signup</code></a></h3>
 <div class="paragraph">
-<p>Allows a User to create an account for use in the Makan Book. Automatic Log In upon Sign Up.<br>
+<p>Allows a User to create an account for use in the Makan Book. Automatic log in upon sign up.<br>
 Format: <code>signup u/USERNAME pwd/PASSWORD n/NAME p/PHONE_NUMBER e/EMAIL</code></p>
 </div>
 <div class="paragraph">
@@ -214,14 +371,14 @@ Format: <code>login u/USERNAME pwd/PASSWORD</code></p>
 <div class="sect2">
 <h3 id="log-out-of-an-existing-session-code-logout-code"><a class="link" href="#log-out-of-an-existing-session-code-logout-code">Log Out of an existing Session: <code>logout</code></a></h3>
 <div class="paragraph">
-<p>Allows a User to log out of an existing session.
+<p>Allows a User to log out of an existing session.<br>
 Format: <code>logout</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="write-review-for-restaurant-code-writereview-code"><a class="link" href="#write-review-for-restaurant-code-writereview-code">Write Review For Restaurant: <code>writeReview</code></a></h3>
 <div class="paragraph">
-<p>Allows user to write reviews for a specific restaurant.<br>
+<p>Allows user to write a review for a specific restaurant.<br>
 Format: <code>writeReview INDEX rate/RATING rvw/REVIEW</code></p>
 </div>
 <div class="paragraph">
@@ -238,8 +395,8 @@ Format: <code>writeReview INDEX rate/RATING rvw/REVIEW</code></p>
 <div class="sect2">
 <h3 id="display-user-profile-code-displayprofile-code"><a class="link" href="#display-user-profile-code-displayprofile-code">Display User Profile: <code>displayProfile</code></a></h3>
 <div class="paragraph">
-<p>Allows a user to view his own profile in the Makan Book. The browser panel will then contains the user&#8217;s details,
-the reviews he&#8217;s written and the list of friends he has.
+<p>Allows a user to view his own profile in the Makan Book. The browser panel will then contains the user&#8217;s details and
+the reviews he&#8217;s written.<br>
 Format: <code>displayProfile</code></p>
 </div>
 </div>
@@ -378,7 +535,7 @@ The activity diagram below describes the process of updating the restaurant&#821
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/AddingUserReviewToRestaurantActivityDiagram.png" alt="AddingUserReviewToRestaurantActivityDiagram" width="800">
+<img src="../images/AddUserReviewToRestaurantActivityDiagram.png" alt="AddUserReviewToRestaurantActivityDiagram" width="800">
 </div>
 </div>
 </div>
@@ -2940,4 +3097,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 10:00:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 10:30:18 UTC</div></div></div></body></html>

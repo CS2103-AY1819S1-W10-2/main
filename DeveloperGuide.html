@@ -34,10 +34,11 @@
 <li><a href="#sign-up-login-and-logout-feature">3.3. Sign Up, Login and Logout Feature</a></li>
 <li><a href="#adding-accepting-and-deleting-friends-and-friend-requests">3.4. Adding, accepting and deleting friends and friend requests</a></li>
 <li><a href="#payment-splitting-feature">3.5. Payment Splitting Feature</a></li>
-<li><a href="#jio-feature">3.6. Jio Feature</a></li>
-<li><a href="#timetable-feature">3.7. Timetable Feature</a></li>
-<li><a href="#logging">3.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.9. Configuration</a></li>
+<li><a href="#internal-representation-of-dates">3.6. Internal Representation of Dates</a></li>
+<li><a href="#jio-feature">3.7. Jio Feature</a></li>
+<li><a href="#user-schedule-feature">3.8. User Schedule Feature</a></li>
+<li><a href="#logging">3.9. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.10. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -102,11 +103,15 @@
 <li><a href="#create-a-jio">G.16. Create a jio</a></li>
 <li><a href="#join-a-jio">G.17. Join a jio</a></li>
 <li><a href="#delete-jio">G.18. Delete jio</a></li>
-<li><a href="#add-debt">G.19. Add Debt</a></li>
-<li><a href="#add-group-debt">G.20. Add Group Debt</a></li>
-<li><a href="#accept-debt-request">G.21. Accept Debt Request</a></li>
-<li><a href="#delete-debt-request">G.22. Delete Debt Request</a></li>
-<li><a href="#clear-debt">G.23. Clear Debt</a></li>
+<li><a href="#block-date-from-your-schedule">G.19. Block Date from your schedule.</a></li>
+<li><a href="#free-date-from-your-schedule">G.20. Free Date from your schedule.</a></li>
+<li><a href="#list-your-schedule-for-the-week">G.21. List your schedule for the week.</a></li>
+<li><a href="#find-free-timeslots-to-meet-among-your-group-members-for-a-week">G.22. Find free timeslots to meet among your group members for a week.</a></li>
+<li><a href="#add-debt">G.23. Add Debt</a></li>
+<li><a href="#add-group-debt">G.24. Add Group Debt</a></li>
+<li><a href="#accept-debt-request">G.25. Accept Debt Request</a></li>
+<li><a href="#delete-debt-request">G.26. Delete Debt Request</a></li>
+<li><a href="#clear-debt">G.27. Clear Debt</a></li>
 </ul>
 </li>
 </ul>
@@ -966,9 +971,47 @@ it for self benefit.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="jio-feature"><a class="link" href="#jio-feature">3.6. Jio Feature</a></h3>
+<h3 id="internal-representation-of-dates"><a class="link" href="#internal-representation-of-dates">3.6. Internal Representation of Dates</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">3.6.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Each date consists of three points of data: the NUS Week, the Day of the week, and the Time of the day.
+The dates are separated into 30 minute intervals as represented by the time. The time is stored in 24-hour format.</p>
+</div>
+<div class="paragraph">
+<p>This implementation means that MakanBook is only tailored to work during the NUS semester. All features requiring some aspect of time
+will use this Date implementation.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reasons-for-this-implementation"><a class="link" href="#reasons-for-this-implementation">3.6.2. Reasons for this implementation</a></h4>
+<div class="paragraph">
+<p>Dates follow the NUS calendar to make it very intuitive for NUS students. Furthermore, this opens up ease of integrating with
+NUS mods in the future.</p>
+</div>
+<div class="paragraph">
+<p>Time-intervals are set at 30 minutes to ease implementation and reduce storage needs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restrictions-on-usage-of-date"><a class="link" href="#restrictions-on-usage-of-date">3.6.3. Restrictions on usage of Date.</a></h4>
+<div class="paragraph">
+<p>Dates are all limited to the NUS calendar, and no dates in the range of 0000 to 0600 hours can be created.
+The rational for this is to discourage improper sleeping hours among students in NUS – at least in that small window of time.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.6.4. Alternatives considered</a></h4>
+<div class="paragraph">
+<p>Another alternative considered was to use the Calendar library in Java to store the dates as an underlying data structure. However,
+as the NUS week system would be the most intuitive way of user input for students, this may only create additional work.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jio-feature"><a class="link" href="#jio-feature">3.7. Jio Feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>A <code>Jio</code> object stores information about the jio in the following objects: <code>Name</code>, <code>Week</code>, <code>Day</code>, <code>Time</code>, <code>Address</code>. The
 <code>Jio</code> object also stores the people going on the jio as a list of <code>Username</code>. A <code>Jio</code> object cannot be modified after
@@ -997,14 +1040,14 @@ is thrown.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="reasons-for-this-implementation"><a class="link" href="#reasons-for-this-implementation">3.6.2. Reasons for this implementation</a></h4>
+<h4 id="reasons-for-this-implementation-2"><a class="link" href="#reasons-for-this-implementation-2">3.7.2. Reasons for this implementation</a></h4>
 <div class="paragraph">
 <p><code>ModelManager</code> exclusively handles all operations related to current user for encapsulation. Thus, the command classes
 do not touch current user at all, but pass <code>Jio</code> objects on to <code>ModelManager</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="alternatives-considered-2"><a class="link" href="#alternatives-considered-2">3.6.3. Alternatives Considered</a></h4>
+<h4 id="alternatives-considered-3"><a class="link" href="#alternatives-considered-3">3.7.3. Alternatives Considered</a></h4>
 <div class="sect4">
 <h5 id="aspect-storing-jio"><a class="link" href="#aspect-storing-jio">Aspect: Storing jio</a></h5>
 <div class="ulist">
@@ -1086,9 +1129,9 @@ do not touch current user at all, but pass <code>Jio</code> objects on to <code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="timetable-feature"><a class="link" href="#timetable-feature">3.7. Timetable Feature</a></h3>
+<h3 id="user-schedule-feature"><a class="link" href="#user-schedule-feature">3.8. User Schedule Feature</a></h3>
 <div class="sect3">
-<h4 id="benefits-for-the-user"><a class="link" href="#benefits-for-the-user">3.7.1. Benefits for the user</a></h4>
+<h4 id="benefits-for-the-user"><a class="link" href="#benefits-for-the-user">3.8.1. Benefits for the user</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1098,33 +1141,51 @@ do not touch current user at all, but pass <code>Jio</code> objects on to <code>
 <p>This way, any other person wanting to eat with other users can easily see which times they are free at.</p>
 </li>
 <li>
-<p>MakanBook can also take in a list of people a user wants to eat with and will find the common free slots for them to
-eat at.</p>
-</li>
-<li>
-<p>As an added feature, the user can also list the eating jios that fit his timetable.</p>
+<p>To help the user arrange eating times with their groups, the user can also run the <code>findDates</code> command to find common timeslots to
+eat at for groups.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">3.7.2. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">3.8.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>In MakanBook, we implemented a schedule feature according to the NUS Calendar: 17 weeks in a semester, with each day
-split into 30 minute timeslots. Each timeslot is encapsulated by a <code>Date</code> object which contains the NUS <code>Week</code>, the <code>Day</code> of the week, and the <code>Time</code> that the 30 minute segment starts at.</p>
+split into 30 minute timeslots as mentioned above. Each timeslot is encapsulated by a <code>Date</code> object which contains the NUS <code>Week</code>, the <code>Day</code> of the week, and the <code>Time</code> that the 30 minute segment starts at.</p>
 </div>
 <div class="paragraph">
-<p>A <code>UniqueBusySchedule</code> class is then used to encapsulate the list of busy timeslots for any individual user and <code>UniqueBusySchedule</code> contains two key pieces of information:
+<p>A <code>UniqueSchedule</code> class is then used to encapsulate the list of busy timeslots for any individual user and <code>UniqueSchedule</code> contains two key pieces of information:
 the <code>Username</code> to identify which user the schedule belongs to, and a <code>HashMap</code> that stores the list of busy <code>Dates</code> for
 each corresponding NUS week.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/BlockDateSequenceDiagram.png" alt="BlockDateSequenceDiagram" width="800">
+</div>
+</div>
 <div class="paragraph">
 <p><strong>Storage of Timetable related Data</strong><br>
-The entire user&#8217;s <code>UniqueBusySchedule</code> is stored in the users.xml file with each object as an XML element containing the username and all busy dates.</p>
+The entire user&#8217;s <code>UniqueSchedule</code> is stored in the users.xml file with each object as an XML element containing the username and all busy dates.</p>
+</div>
+<div class="paragraph">
+<p><strong>Algorithm for finding free timeslots to eat</strong><br>
+Currently, each time <code>listScheduleForUser</code> or <code>findDates</code> is run, the system will retrieve the list of all unavailable dates for that NUS week.
+Then, a complete list of free dates will be generated for that week. The list of blocked dates will be run against the complete free list, removing all blocked dates before the UI
+receives the finalised list to display.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="timetable-commands"><a class="link" href="#timetable-commands">3.7.3. Timetable Commands</a></h4>
+<h4 id="reasons-for-this-implementation-3"><a class="link" href="#reasons-for-this-implementation-3">3.8.3. Reasons for this Implementation</a></h4>
+<div class="paragraph">
+<p>All lists of dates are stored in a <code>List</code> instead of a <code>Set</code>. In the future, utilising <code>Set</code> may be a safer alternative to completely prevent the possibility of duplicates.
+Currently, duplicate dates are checked through the <code>contains</code> method of <code>List</code>. Any programming violations are checked in the test suite.</p>
+</div>
+<div class="paragraph">
+<p><code>Set</code> data structures are not currently used as it will not interact well with the current XML storage system. For lack of time, this low-priority consideration will be set aside.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="timetable-commands"><a class="link" href="#timetable-commands">3.8.4. Timetable Commands</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1137,31 +1198,31 @@ The entire user&#8217;s <code>UniqueBusySchedule</code> is stored in the users.x
 <p><code>ListScheduleForWeek</code> is specific to the logged in user. The command lists the user&#8217;s schedule for a given NUS week. A parser is necessary.</p>
 </li>
 <li>
-<p>(NOT IMPLEMENTED) <code>FindDateCommand</code> finds common dates to eat between the current user and a list of users he inputs. A parser is necessary.</p>
+<p><code>FindDates</code> finds common dates to eat between all users the group is in. The command lists all free timeslots to eat for a given NUS week, among the NUS group. A parser is necessary.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="restrictions-on-usage-of-timetable-commands"><a class="link" href="#restrictions-on-usage-of-timetable-commands">3.7.4. Restrictions on usage of Timetable commands</a></h4>
+<h4 id="restrictions-on-usage-of-timetable-commands"><a class="link" href="#restrictions-on-usage-of-timetable-commands">3.8.5. Restrictions on usage of Timetable commands</a></h4>
 <div class="paragraph">
 <p>Timetable Commands can only be used when the <code>User</code> is logged into the MakanBook.
 Exceptions are handled with the <code>NotLoggedInCommandException</code> class in the <code>Logic</code> component.</p>
 </div>
 <div class="paragraph">
-<p>The algorithm for finding all the free dates for a user is found inside the UniqueSchedule class.</p>
+<p>The algorithm for finding all the free dates for a user or group is found inside the UniqueSchedule class.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.9, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.10, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1192,7 +1253,7 @@ Exceptions are handled with the <code>NotLoggedInCommandException</code> class i
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.9. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.10. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3928,7 +3989,164 @@ Expected: Jio does not exist.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-debt"><a class="link" href="#add-debt">G.19. Add Debt</a></h3>
+<h3 id="block-date-from-your-schedule"><a class="link" href="#block-date-from-your-schedule">G.19. Block Date from your schedule.</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Block a valid date from your schedule</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. The date is not blocked on your schedule.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>blockDate w/recess d/mon h/1800</code><br>
+Expected: New date added on your schedule: [NUS Week: recess Day:mon Time:1800].</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Block a valid date that is already on your schedule</p>
+</li>
+<li>
+<p>Block a valid date from your schedule</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. The date is blocked on your schedule.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>blockDate w/recess d/mon h/1800</code><br>
+Expected: This busy date already exists in your schedule.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="free-date-from-your-schedule"><a class="link" href="#free-date-from-your-schedule">G.20. Free Date from your schedule.</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Free a valid date from your schedule</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. The date is blocked on your schedule.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>freeDate w/recess d/mon h/1800</code><br>
+Expected: Time has been unblocked on your schedule: [NUS Week: recess Day:mon Time:1800]</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Free a valid date from your schedule when it is already free.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. The date is blocked on your schedule.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>freeDate w/recess d/mon h/1800</code><br>
+Expected: This time block is already free on your schedule.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-your-schedule-for-the-week"><a class="link" href="#list-your-schedule-for-the-week">G.21. List your schedule for the week.</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>List your schedule for a valid week.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>listScheduleForWeek w/13</code><br>
+Expected: Your schedule will be listed in the browser panel as a html document with the heading: These are your free dates for the Week: 13.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="find-free-timeslots-to-meet-among-your-group-members-for-a-week"><a class="link" href="#find-free-timeslots-to-meet-among-your-group-members-for-a-week">G.22. Find free timeslots to meet among your group members for a week.</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Find free timeslots to meet among group members for a valid group and a valid week.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in and part of a group.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>findDates g/2103 w/13</code><br>
+Expected: The list of timeslots for meeting will be listed in the browser panel as a html document with the heading: These are the common free dates for Group: 2103 on Week: 13.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Find free timeslots to meet among group members for a invalid group and a valid week.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in and not part of the group.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>findDates g/krustycrab w/13</code><br>
+Expected: You are not in that group.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-debt"><a class="link" href="#add-debt">G.23. Add Debt</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3989,7 +4207,7 @@ Expected: Input amount must be larger than zero and less than a hundred million.
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-group-debt"><a class="link" href="#add-group-debt">G.20. Add Group Debt</a></h3>
+<h3 id="add-group-debt"><a class="link" href="#add-group-debt">G.24. Add Group Debt</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4030,7 +4248,7 @@ Expected: A debt request of 12.000000 SGD to other member in 2103 is sent</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="accept-debt-request"><a class="link" href="#accept-debt-request">G.21. Accept Debt Request</a></h3>
+<h3 id="accept-debt-request"><a class="link" href="#accept-debt-request">G.25. Accept Debt Request</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4087,7 +4305,7 @@ Expected: Input debt not exist.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-debt-request"><a class="link" href="#delete-debt-request">G.22. Delete Debt Request</a></h3>
+<h3 id="delete-debt-request"><a class="link" href="#delete-debt-request">G.26. Delete Debt Request</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4144,7 +4362,7 @@ Expected: Input debt not exist.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clear-debt"><a class="link" href="#clear-debt">G.23. Clear Debt</a></h3>
+<h3 id="clear-debt"><a class="link" href="#clear-debt">G.27. Clear Debt</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4208,4 +4426,4 @@ Expected: Input amount should be larger than zero.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:25:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:37:27 UTC</div></div></div></body></html>

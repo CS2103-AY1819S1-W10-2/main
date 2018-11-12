@@ -233,7 +233,7 @@ Format: <code>addGroup g/GROUPNAME</code></p>
 <h3 id="adding-members-code-addmembers-code"><a class="link" href="#adding-members-code-addmembers-code">Adding members: <code>addMembers</code></a></h3>
 <div class="paragraph">
 <p>A User already in the group can add members to a particular group by specifying the group name and the usernames of the users they wish to add to that group.<br>
-Format: <code>addMembers g/GROUPNAME [Users… u/USERNAMES]</code></p>
+Format: <code>addMembers g/GROUPNAME [Users u/USERNAMES]&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -412,5 +412,453 @@ inconvenient for the User and thus the hashmap mentioned before was used.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-friends"><a class="link" href="#adding-friends">Adding friends</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add a valid user as a friend</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is not already friends and has not sent a friend request to katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addFriend u/katespades</code><br>
+Expected: Friend request sent to: katespades</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:24:59 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Send a friend request to a user multiple times</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. Have already sent a friend request previously to katespades which has not been accepted or deleted by katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addFriend u/katespades</code><br>
+Expected: You have already sent friend request to this User</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Send a friend request to a user who has sent a friend request to you previously</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 has a friend request from katespades which has not been accepted yet by meena567.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addFriend u/katespades</code><br>
+Expected: You have that user&#8217;s friend request. Please accept that request instead of adding them as a friend.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Send a friend request to a user who is already a friend</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is already friends with katespades.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addFriend u/katespades</code><br>
+Expected: You are already friends with this user.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accepting-friends"><a class="link" href="#accepting-friends">Accepting friends</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Accepting a valid friend request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 has a friend request from katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>acceptFriend u/katespades</code><br>
+Expected: Successfully accepted friend request of: katespades</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Accepting an invalid friend request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 does not have a friend request from katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>acceptFriend u/katespades</code><br>
+Expected: Sorry, that user is not in your friend requests' list.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-friend-requests"><a class="link" href="#deleting-friend-requests">Deleting friend requests</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a valid friend request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 has a friend request from katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteFriendRequest u/katespades</code><br>
+Expected: Successfully deleted friend request of user : katespades</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting an invalid friend request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 does not have a friend request from katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteFriendRequest u/katespades</code><br>
+Expected: Sorry, that User did not send you a friend request.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-friends"><a class="link" href="#deleting-friends">Deleting friends</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a valid friend</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is friends with katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteFriend u/katespades</code><br>
+Expected: Successfully deleted friend with username: katespades</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting an invalid friend request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is not friends with katespades</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteFriend u/katespades</code><br>
+Expected: Sorry, the friend that you want to delete does not exist in your list of friends</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-groups"><a class="link" href="#adding-groups">Adding groups</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding a valid group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567 and wants to add a group with name CS2103. CS2103 is not the name of any other group in Makan Book.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addGroup g/CS2103</code><br>
+Expected: Group created: CS2103</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding an invalid group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567 and wants to add a group with name CS2103. However, there exists another group with name CS2103.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addGroup u/CS2103</code><br>
+Expected: Sorry, a group with that name exists. Please choose a different group name.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accepting-groups"><a class="link" href="#accepting-groups">Accepting groups</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Accepting a valid group request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 has a group request from CS2103</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>acceptGroup g/CS2103</code><br>
+Expected: Successfully accepted group request of: CS2103</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Accepting an invalid group request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 does not have a group request from CS2103</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>acceptGroup g/CS2103</code><br>
+Expected: Sorry, that group is not in your group requests' list.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-members-to-groups"><a class="link" href="#adding-members-to-groups">Adding members to groups</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding all valid members</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567 and meena567 is part of group CS2103. meena567 wants to add users who are not part of the group and have previously received group request.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addMembers g/CS2103 u/katespades u/thejrlinguist</code><br>
+Expected: Members added to group: CS2103=[katespades, thejrlinguist]</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding some members who are part of the group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567 and meena567 is part of group CS2103. meena567 wants to add users thejrlinguist and katespades to the group. However, thejrlinguist is already part of the group but katespades is not.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addMembers g/CS2103 u/katespades u/thejrlinguist</code><br>
+Expected: Sorry, username to be added is in the group. No users were added to the group.</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>Even though katespades is not a part of the group, the command will not add any members to the group as thejrlinguist is already inside the group.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding users who already have a group request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567 and meena567 is part of group CS2103. meena567 wants to add katespades to the group. However, katespades already has a request to the group.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>addMembers g/CS2103 u/katespades</code><br>
+Expected: Sorry, User already has a request for that group.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-group-requests"><a class="link" href="#deleting-group-requests">Deleting group requests</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a valid group request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 has a group request from CS2103</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteGroupRequest g/CS2103</code><br>
+Expected: Successfully deleted group request of group : CS2103</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting an invalid group request</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 does not have a group request from CS2103</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteGroupRequest g/CS2103</code><br>
+Expected: Sorry, you do not have that group request</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-group"><a class="link" href="#deleting-group">Deleting group</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a valid group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is part of CS2103 group</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteGroup g/CS2103</code><br>
+Expected: Successfully deleted group with name: CS2103</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Deleting an invalid group</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as meena567. meena567 is not in CS2103 group</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteGroup g/CS2103</code><br>
+Expected: Sorry, the group that you want to delete does not exist in your list of groups</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:25:42 UTC</div></div></div></body></html>

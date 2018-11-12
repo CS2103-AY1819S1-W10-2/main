@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Ng Hoi Ying - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level3">AB-3</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Makan Book</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/CS2103-AY1819S1-W10-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Ng Hoi Ying - Project Portfolio</h1></div><div id="content"><div class="sect1">
-<h2 id="project-addressbook-level-4"><a class="link" href="#project-addressbook-level-4">PROJECT: AddressBook - Level 4</a></h2>
+<h2 id="project-makan-book"><a class="link" href="#project-makan-book">PROJECT: Makan Book</a></h2>
 <div class="sectionbody">
 <hr>
 </div>
@@ -122,7 +122,8 @@ no longer showing the user&#8217;s information after logout.</p>
 <p>PRs reviewed (with non-trivial review comments) for other member.</p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class.</p>
+<p>Reported bugs and suggestions for other teams in the class: <a href="https://github.com/CS2103-AY1819S1-T13-1/main/issues/141">#141</a>,
+<a href="https://github.com/CS2103-AY1819S1-T13-1/main/issues/152">#152</a>, <a href="https://github.com/CS2103-AY1819S1-T13-1/main/issues/155">#155</a></p>
 </li>
 </ul>
 </div>
@@ -131,9 +132,6 @@ no longer showing the user&#8217;s information after logout.</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -297,8 +295,17 @@ Format: <code>listDebtor</code></p>
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The payment splitting feature allow user to keep record for their debts, especially for gathering. Creditor can use
-the <code>addDebt</code> to create a request to debtor. A record of this debt will be made with a "pending" status and store to
-both user. Debtor can then use the <code>acceptDebtRequest</code> to accept the request from creditor, which the status will be
+the <code>addDebt</code> to create a request to debtor, or <code>addGroupDebt</code> to create a request to all other members in a group.
+A record of this debt will be made with a "pending" status and store to
+both user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddDebtCommandSequenceDiagram.png" alt="AddDebtCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Debtor can then use the <code>acceptDebtRequest</code> to accept the request from creditor, which the status will be
 changed to "accepted", or reject and delete the request by <code>deleteDebtRequest</code>, which the the debt record will be
 deleted and removed from the storage. If the debt has been repaid, the creditor can use the <code>clearDebt</code> to mark the
 debt as "cleared". Only the user who initialized the debt(creditor) can clear the debt, and only the other user(debtor)
@@ -397,4 +404,4 @@ it for self benefit.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 13:10:17 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:18:37 UTC</div></div></div></body></html>

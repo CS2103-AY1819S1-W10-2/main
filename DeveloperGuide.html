@@ -90,6 +90,9 @@
 <li><a href="#display-current-user-profile">G.4. Display Current User Profile</a></li>
 <li><a href="#write-a-review">G.5. Write a Review</a></li>
 <li><a href="#saving-data">G.6. Saving data</a></li>
+<li><a href="#create-a-jio">G.7. Create a jio</a></li>
+<li><a href="#join-a-jio">G.8. Join a jio</a></li>
+<li><a href="#delete-jio">G.9. Delete jio</a></li>
 </ul>
 </li>
 </ul>
@@ -2351,13 +2354,13 @@ Additionally, Users can add other users as friends and form groups so that they 
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-check-square-o"></i> V1.1:</p>
+<p><i class="fa fa-check-square-o"></i> V1.1: User can create an empty jio with specified parameters.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> V1.2:</p>
+<p><i class="fa fa-check-square-o"></i> V1.2: Jio stores a list of users, users can delete and join a jio.</p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> V1.3:</p>
+<p><i class="fa fa-check-square-o"></i> V1.3: Only the creator can delete a jio. Allow for creation for of group jio. List all jios works with second list panel.</p>
 </li>
 </ul>
 </div>
@@ -3297,5 +3300,170 @@ Expected: Written Reviews can take any values, and it should not be blank.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="create-a-jio"><a class="link" href="#create-a-jio">G.7. Create a jio</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a jio with vaild parameters</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as chelchia. A jio of the same name has not already been created</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/manualtestjio w/1 d/mon h/1200 a/FineFood</code><br>
+Expected: New jio added: manualtestjio Date: [NUS Week: 1 Day:mon Time:1200] Address: FineFood People: chelchia</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:27:52 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a group jio with valid parameter</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as chelchia. A group 2103 exists</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/groupjio w/1 d/mon h/1200 a/FineFood g/2103</code><br>
+Expected: New jio added: groupjio Date: [NUS Week: 1 Day:mon Time:1200] Address: FineFood People: chelchia navekom meena567 aiden katespades</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a jio with same jio name</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/manualtestjio w/1 d/mon h/1200 a/FineFood</code><br>
+Expected: A jio with the same name already exists</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="join-a-jio"><a class="link" href="#join-a-jio">G.8. Join a jio</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Join a valid jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is not creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>joinJio n/manualtestjio</code><br>
+Expected: Jio joined: manualtestjio</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Join a non-existent jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>joinJio n/randomjio</code><br>
+Expected: This jio does not exist</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-jio"><a class="link" href="#delete-jio">G.9. Delete jio</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a valid jio user created</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/manualtestjio</code><br>
+Expected: Jio deleted: manualtestjio</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete a valid jio not created by user</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is not creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/manualtestjio</code><br>
+Expected: You are not the creator of this jio. Only the creator can delete a jio.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Join a non-existent jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/randomjio</code><br>
+Expected: Jio does not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:36:06 UTC</div></div></div></body></html>

@@ -17,8 +17,9 @@
 <li><a href="#locating-restaurants-by-name-code-find-code">2.3. Locating restaurants by name: <code>find</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">2.4. Listing entered commands : <code>history</code></a></li>
 <li><a href="#selecting-a-restaurant-code-selectrestaurant-code">2.5. Selecting a restaurant : <code>selectRestaurant</code></a></li>
-<li><a href="#signing-up-for-a-makan-book-account-code-signup-code">2.6. Signing Up for a Makan Book Account: <code>signup</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">2.7. Exiting the program : <code>exit</code></a></li>
+<li><a href="#selecting-a-restaurant-code-selectother-code">2.6. Selecting a restaurant : <code>selectOther</code></a></li>
+<li><a href="#signing-up-for-a-makan-book-account-code-signup-code">2.7. Signing Up for a Makan Book Account: <code>signup</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">2.8. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#features-requires-login">3. Features (Requires Login)</a>
@@ -90,7 +91,10 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Makan Book is for those who <strong>prefer to use a desktop app to search for restaurants within NUS to eat at alone or with friends</strong>. More importantly, MakanBook is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). MakanBook also allows users to add and manage friends and groups, start private and public jios and so much more! Interested? Jump to the <a href="#Quick Start">[Quick Start]</a> to get started. Enjoy!
+<p>Makan Book is for those who <strong>prefer to use a desktop app to search for restaurants within NUS to eat at alone or with friends</strong>. More importantly, MakanBook is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). MakanBook also allows users to add and manage friends and groups, start private and public jios and so much more! Interested? Jump to the <a href="#Quick Start">[Quick Start]</a> to get started. Enjoy!</p>
+</div>
+<div class="paragraph">
+<p>[[Quick Start]]
 == Quick Start</p>
 </div>
 <div class="olist arabic">
@@ -291,19 +295,61 @@ Format: <code>selectRestaurant INDEX</code></p>
 <ul>
 <li>
 <p><code>list</code><br>
-<code>select 2</code><br>
+<code>selectRestaurant 2</code><br>
 Selects the 2nd restaurant in the address book.</p>
 </li>
 <li>
 <p><code>find Hwangs</code><br>
-<code>select 1</code><br>
+<code>selectRestaurant 1</code><br>
 Selects the 1st restaurant in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="signing-up-for-a-makan-book-account-code-signup-code"><a class="link" href="#signing-up-for-a-makan-book-account-code-signup-code">2.6. Signing Up for a Makan Book Account: <code>signup</code></a></h3>
+<h3 id="selecting-a-restaurant-code-selectother-code"><a class="link" href="#selecting-a-restaurant-code-selectother-code">2.6. Selecting a restaurant : <code>selectOther</code></a></h3>
+<div class="paragraph">
+<p>Selects the item (Friend, Group, Debt, Request, Jio) identified by the index number used in the displayed item list (the second list panel). It will display details of the item
+which varies based on the item selected (eg. Jio contains name, date, address, people)<br>
+Format: <code>selectOther INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the item and loads the item page at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the displayed item list.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>listJio</code><br>
+<code>selectOther 2</code><br>
+Selects the 2nd jio in the address book.</p>
+</li>
+<li>
+<p><code>listGroups</code><br>
+<code>selectOther 1</code><br>
+Selects the 1st group in the address book.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="signing-up-for-a-makan-book-account-code-signup-code"><a class="link" href="#signing-up-for-a-makan-book-account-code-signup-code">2.7. Signing Up for a Makan Book Account: <code>signup</code></a></h3>
 <div class="paragraph">
 <p>Allows a User to create an account for use in the Makan Book. Automatic log in upon sign up.<br>
 Format: <code>signup u/USERNAME pwd/PASSWORD n/NAME p/PHONE_NUMBER e/EMAIL</code></p>
@@ -320,7 +366,7 @@ Format: <code>signup u/USERNAME pwd/PASSWORD n/NAME p/PHONE_NUMBER e/EMAIL</code
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.7. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">2.8. Exiting the program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
@@ -870,7 +916,7 @@ Format: <code>listScheduleForWeek w/WEEKNUMBER</code></p>
 <h3 id="find-common-group-meeting-times-code-finddates-code"><a class="link" href="#find-common-group-meeting-times-code-finddates-code">3.33. Find common group meeting times: <code>findDates</code></a></h3>
 <div class="paragraph">
 <p>Views the available times to meet in your group. You must be a part of a group.<br>
-Format: `findDates g/GROUPNAME w/WEEKNUMBER</p>
+Format: <code>findDates g/GROUPNAME w/WEEKNUMBER</code></p>
 </div>
 </div>
 </div>
@@ -1034,7 +1080,7 @@ Format: <code>undo</code></p>
 <code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
 </li>
 <li>
-<p><code>select 1</code><br>
+<p><code>selectRestaurant 1</code><br>
 <code>list</code><br>
 <code>undo</code><br>
 The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
@@ -1242,6 +1288,10 @@ e.g. <code>find Waa Lao</code></p>
 <p><strong>List</strong> : <code>list</code></p>
 </li>
 <li>
+<p><strong>List Jio</strong> : <code>listJio</code><br>
+e.g. <code>listJio</code></p>
+</li>
+<li>
 <p><strong>Help</strong> : <code>help</code></p>
 </li>
 <li>
@@ -1277,21 +1327,8 @@ e.g. <code>writeReview 2 rate/5 rvw/I tried the Salmon Mentaiko Chirashi and it 
 <p><strong>Display User Profile</strong>: <code>displayProfile</code></p>
 </li>
 <li>
-<p><strong>Create Jio</strong> : <code>createJio</code><br>
-e.g. <code>createJio n/MALA w/1 d/mon h/1200 a/FineFood</code>
-e.g. <code>createJio n/saporeFriends w/1 d/mon h/1800 a/Sapore g/mygroup</code></p>
-</li>
-<li>
-<p><strong>Join Jio</strong> : <code>joinJio</code><br>
-e.g. <code>joinJio n/MALA</code></p>
-</li>
-<li>
-<p><strong>Delete Jio</strong> : <code>deleteJio</code><br>
-e.g. <code>deleteJio n/MALA</code></p>
-</li>
-<li>
-<p><strong>List Jio</strong> : <code>listJio</code><br>
-e.g. <code>listJio</code></p>
+<p><strong>selectOther</strong> : <code>selectOther INDEX</code><br>
+e.g.<code>selectOther 2</code></p>
 </li>
 <li>
 <p><strong>Add Friend</strong> : <code>addFriend u/USERNAME</code><br>
@@ -1317,23 +1354,23 @@ e.g. <code>deleteFriend u/meena567</code></p>
 </li>
 <li>
 <p><strong>Add Group</strong> : <code>addGroup g/GROUP_NAME</code><br>
-e.g. addGroup g/2103</p>
+e.g. <code>addGroup g/2103</code></p>
 </li>
 <li>
 <p><strong>Add Members</strong> : <code>addMembers g/GROUP_NAME [u/USERNAME&#8230;&#8203;]</code><br>
-e.g. addMembers g/2103 u/thejrlinguist u/meena567</p>
+e.g. <code>addMembers g/2103 u/thejrlinguist u/meena567</code></p>
 </li>
 <li>
 <p><strong>Accept Group</strong> : <code>acceptGroup g/GROUP_NAME</code><br>
-e.g. acceptGroup g/2103</p>
+e.g. <code>acceptGroup g/2103</code></p>
 </li>
 <li>
 <p><strong>Delete Group Request</strong> : <code>deleteGroupRequest g/GROUP_NAME</code><br>
-e.g. deleteGroupRequest g/2103</p>
+e.g. <code>deleteGroupRequest g/2103</code></p>
 </li>
 <li>
 <p><strong>Delete Group</strong> : <code>deleteGroup g/GROUP_NAME</code><br>
-e.g. deleteGroup g/2103</p>
+e.g. <code>deleteGroup g/2103</code></p>
 </li>
 <li>
 <p><strong>List Group Requests</strong> : <code>listGroupRequests</code><br></p>
@@ -1342,20 +1379,17 @@ e.g. deleteGroup g/2103</p>
 <p><strong>List Groups</strong> : <code>listGroups</code><br></p>
 </li>
 <li>
-<p><strong>Block Date</strong> : <code>blockDate w/WEEKNUMBER d/DAY h/HHHH</code>
-e.g. <code>blockDate w/reading d/thu h/1800</code></p>
+<p><strong>Create Jio</strong> : <code>createJio</code><br>
+e.g. <code>createJio n/MALA w/1 d/mon h/1200 a/FineFood</code><br>
+e.g. <code>createJio n/saporeFriends w/1 d/mon h/1800 a/Sapore g/mygroup</code></p>
 </li>
 <li>
-<p><strong>Free Date</strong> : <code>freeDate w/WEEK_NUMBER d/DAY h/HHHH</code>
-e.g. <code>freeDate w/11 d/tue h/0600</code></p>
+<p><strong>Join Jio</strong> : <code>joinJio</code><br>
+e.g. <code>joinJio n/MALA</code></p>
 </li>
 <li>
-<p><strong>List User&#8217;s Free Timeslots for a Week</strong> : <code>listScheduleForWeek w/WEEK_NUMBER</code>
-e.g. <code>listScheduleForWeek w/6</code></p>
-</li>
-<li>
-<p><strong>List free timeslots for your group for a week</strong> : <code>findDates g/GROUP_NAME w/WEEK_NUMBER</code>
-e.g. <code>findDates g/2103 w/reading</code></p>
+<p><strong>Delete Jio</strong> : <code>deleteJio</code><br>
+e.g. <code>deleteJio n/MALA</code></p>
 </li>
 <li>
 <p><strong>Add Debt</strong> : <code>addDebt</code><br>
@@ -1392,6 +1426,22 @@ e.g. <code>deleteDebtRequest u/kate amt/7.9 id/181030224951280</code></p>
 <li>
 <p><strong>List Debt History</strong> : <code>listDebtHistory</code></p>
 </li>
+<li>
+<p><strong>Block Date</strong> : <code>blockDate w/WEEKNUMBER d/DAY h/HHHH</code><br>
+e.g. <code>blockDate w/reading d/thu h/1800</code></p>
+</li>
+<li>
+<p><strong>Free Date</strong> : <code>freeDate w/WEEK_NUMBER d/DAY h/HHHH</code><br>
+e.g. <code>freeDate w/11 d/tue h/0600</code></p>
+</li>
+<li>
+<p><strong>List User&#8217;s Free Timeslots for a Week</strong> : <code>listScheduleForWeek w/WEEK_NUMBER</code><br>
+e.g. <code>listScheduleForWeek w/6</code></p>
+</li>
+<li>
+<p><strong>List free timeslots for your group for a week</strong> : <code>findDates g/GROUP_NAME w/WEEK_NUMBER</code><br>
+e.g. <code>findDates g/2103 w/reading</code></p>
+</li>
 </ul>
 </div>
 </div>
@@ -1424,4 +1474,4 @@ e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:58:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:10:03 UTC</div></div></div></body></html>

@@ -161,7 +161,7 @@ Format: <code>addDebt u/USERNAME amt/AMOUNT</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>addDebt u/Kate123 amt/4.30</code></p>
+<p><code>addDebt u/katespades amt/4.30</code></p>
 </li>
 </ul>
 </div>
@@ -198,18 +198,27 @@ Format: <code>clearDebt u/NAME amt/AMOUNT</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>clearDebt u/Kate123 amt/4.30</code></p>
+<p><code>clearDebt u/katespades amt/4.30</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="accept-debt-request-code-acceptdebtrequest-code"><a class="link" href="#accept-debt-request-code-acceptdebtrequest-code">Accept debt request: <code>acceptDebtRequest</code></a></h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Unique ID is generate for each debt, even though the input parameters are the same.
+This is to ensure that mutiple debts can be recorded and differentiated.</p>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>User(Debtor) accept request from another user(Creditor). The debt status will change
  from <code>Pending</code> to <code>Accepted</code>. If there are any other accepted debt between this two
  users, the debt will balanced off as one debt record.<br>
-Format: <code>acceptDebtRequest u/NAME amt/AMOUNT id/ID</code></p>
+Format: <code>acceptDebtRequest u/NAME amt/AMOUNT id/ID</code><br>
+<strong>ID is unique and should copy from the Debt Card in UI when you test it</strong></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -217,7 +226,7 @@ Format: <code>acceptDebtRequest u/NAME amt/AMOUNT id/ID</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>acceptDebtRequest u/Kate123 amt/4.30 id/18103013460314</code></p>
+<p><code>acceptDebtRequest u/katespades amt/4.30 id/18103013460314(copy from UI)</code></p>
 </li>
 </ul>
 </div>
@@ -226,7 +235,8 @@ Format: <code>acceptDebtRequest u/NAME amt/AMOUNT id/ID</code></p>
 <h3 id="delete-debt-request-code-deletedebtrequest-code"><a class="link" href="#delete-debt-request-code-deletedebtrequest-code">Delete debt request: <code>deleteDebtRequest</code></a></h3>
 <div class="paragraph">
 <p>User(Debtor) delete/reject request send by other user if it is a wrong request.<br>
-Format: <code>deleteDebtRequest u/USERNAME amt/AMOUNT id/ID</code></p>
+Format: <code>deleteDebtRequest u/USERNAME amt/AMOUNT id/ID</code><br>
+<strong>ID is unique and should copy from the Debt Card in UI when you test it</strong></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -234,41 +244,41 @@ Format: <code>deleteDebtRequest u/USERNAME amt/AMOUNT id/ID</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>deleteDebtRequest u/Kate123 amt/4.30 id/18103013460314</code></p>
+<p><code>deleteDebtRequest u/Kate123 amt/4.30 id/18103013460314(copy from UI)</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-login-user-s-creditor"><a class="link" href="#list-all-login-user-s-creditor">List all login user&#8217;s creditor</a></h3>
+<h3 id="list-all-login-user-s-creditor-code-listcreditor-code"><a class="link" href="#list-all-login-user-s-creditor-code-listcreditor-code">List all login user&#8217;s creditor <code>listCreditor</code></a></h3>
 <div class="paragraph">
 <p>List all creditor of the login user in list panel.<br>
 Format: <code>listCreditor</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-login-user-s-debtor"><a class="link" href="#list-all-login-user-s-debtor">List all login user&#8217;s debtor</a></h3>
+<h3 id="list-all-login-user-s-debtor-code-listdebtor-code"><a class="link" href="#list-all-login-user-s-debtor-code-listdebtor-code">List all login user&#8217;s debtor <code>listDebtor</code></a></h3>
 <div class="paragraph">
 <p>List all debtor of the login user in list panel.<br>
 Format: <code>listDebtor</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-login-user-s-debt-request-received"><a class="link" href="#list-all-login-user-s-debt-request-received">List all login user&#8217;s debt request received</a></h3>
+<h3 id="list-all-login-user-s-debt-request-received-code-listdebtrequestreceived-code"><a class="link" href="#list-all-login-user-s-debt-request-received-code-listdebtrequestreceived-code">List all login user&#8217;s debt request received <code>listDebtRequestReceived</code></a></h3>
 <div class="paragraph">
 <p>List all debt request received by login user from other user in list panel.<br>
 Format: <code>listDebtRequestReceived</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-login-user-s-debt-request-sent"><a class="link" href="#list-all-login-user-s-debt-request-sent">List all login user&#8217;s debt request sent</a></h3>
+<h3 id="list-all-login-user-s-debt-request-sent-code-listdebtrequestsent-code"><a class="link" href="#list-all-login-user-s-debt-request-sent-code-listdebtrequestsent-code">List all login user&#8217;s debt request sent <code>listDebtRequestSent</code></a></h3>
 <div class="paragraph">
 <p>List all debt request sent by login user to other user in list panel.<br>
 Format: <code>listDebtRequestSent</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-all-login-user-s-debt-history-br"><a class="link" href="#list-all-login-user-s-debt-history-br">List all login user&#8217;s debt history<br></a></h3>
+<h3 id="list-all-login-user-s-debt-history-code-listdebtor-code"><a class="link" href="#list-all-login-user-s-debt-history-code-listdebtor-code">List all login user&#8217;s debt history <code>listDebtor</code></a></h3>
 <div class="paragraph">
 <p>List all debt history(regardless of status) of the login user in list panel.
 Format: <code>listDebtor</code></p>
@@ -403,5 +413,285 @@ it for self benefit.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="add-debt"><a class="link" href="#add-debt">Add Debt</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User is logged in.</p>
+</li>
+<li>
+<p>Input debtor name should correspond to a valid user.</p>
+</li>
+<li>
+<p>Input amount should be larger than zero,
+less than a hundred million and less than two decimal places.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add Debt to a valid user with valid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addDebt u/katespades amt/12</code><br>
+Expected: A debt request of 12.000000 SGD to katespades is sent</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:10:03 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Add Debt to a invalid user with valid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addDebt u/test123 amt/12</code><br>
+Expected: Input user not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add debt to a valid user with invalid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addDebt u/katespades amt/99999999999</code><br>
+Expected: Input amount must be larger than zero and less than a hundred million.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="add-group-debt"><a class="link" href="#add-group-debt">Add Group Debt</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User is logged in.</p>
+</li>
+<li>
+<p>Input group name should correspond to a valid group.</p>
+</li>
+<li>
+<p>User is a accepted user for the correspond input group.</p>
+</li>
+<li>
+<p>Input amount should be larger than zero, less than a hundred million and less than two decimal places.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add debt to a valid group with valid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>addGroupDebt g/2103 amt/12</code><br>
+Expected: A debt request of 12.000000 SGD to other member in 2103 is sent</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="accept-debt-request"><a class="link" href="#accept-debt-request">Accept Debt Request</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User is logged in.</p>
+</li>
+<li>
+<p>Input creditor name should correspond to a valid user.</p>
+</li>
+<li>
+<p>A <code>PENDING</code> debt exist between user(as a debtor) and input creditor, with amount and debt id match the input amount and debt id.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Unique ID is generate for each debt, even though the input parameters are the same.
+This is to ensure that mutiple debts can be recorded and differentiated.</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Accept a debt request received</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>acceptDebtRequest u/meena567 amt/12 id/18111216484190</code><br>
+Expected: Debt request(ID: 18111216484190) from meena567 of 12.000000 SGD has been accepted.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Accept a non-existent debt request received</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>acceptDebtRequest u/meena567 amt/18 id/110111216482190</code> (random id and amount)<br>
+Expected: Input debt not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-debt-request"><a class="link" href="#delete-debt-request">Delete Debt Request</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User is logged in.</p>
+</li>
+<li>
+<p>Input creditor name should correspond to a valid user.</p>
+</li>
+<li>
+<p>A <code>PENDING</code> debt exist between user(as a debtor) and input creditor, with amount and debt id match the input amount and debt id.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Unique ID is generate for each debt, even though the input parameters are the same.
+This is to ensure that mutiple debts can be recorded and differentiated.</p>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a debt request received</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>deleteDebtRequest u/meena567 amt/12 id/18111216484190</code><br>
+Expected: Debt request(ID: 181112172248904) from meena567 of 3.000000 SGD has been deleted.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete a non-existent debt request received</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>deleteDebtRequest u/meena567 amt/18 id/110111216482190</code> (random id and amount)<br>
+Expected: Input debt not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clear-debt"><a class="link" href="#clear-debt">Clear Debt</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Prerequisites:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User is logged in.</p>
+</li>
+<li>
+<p>Input debtor name should correspond to a valid user.</p>
+</li>
+<li>
+<p>An <code>ACCEPTED</code> exist between user(as a creditor) and input debtor.</p>
+</li>
+<li>
+<p>Input amount should be larger than zero,
+less than the amount of corresponding debt.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clear Debt to a valid user with valid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>clearDebt u/katespades amt/7</code><br>
+Expected: katespades&#8217;s debt of 7.000000 SGD is cleared.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Clear Debt to a invalid user(not your debtor) with valid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>clearDebt u/chelchia amt/3</code><br>
+Expected: There are no debt between you and input user</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add debt to a valid user with invalid amount</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>clearDebt u/katespades amt/0</code><br>
+Expected: Input amount should be larger than zero.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:24:59 UTC</div></div></div></body></html>

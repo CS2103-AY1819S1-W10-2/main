@@ -232,5 +232,320 @@ Format: <code>listJio</code></p>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><strong>Added the class diagram for <code>Jio</code> into the Model class diagram</strong>:
+=== Model component</p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:25:18 UTC</div></div></div></body></html>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagramWithJio.png" alt="ModelClassDiagramWithJio" width="800">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Address Book data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Restaurant&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+<div id="Design-Storage" class="paragraph">
+<p><strong>Detailed explanation of the implementation of Jio feature with UML sequence diagram</strong>:
+=== Jio Feature
+==== Current Implementation
+A <code>Jio</code> object stores information about the jio in the following objects: <code>Name</code>, <code>Week</code>, <code>Day</code>, <code>Time</code>, <code>Address</code>. The
+<code>Jio</code> object also stores the people going on the jio as a list of <code>Username</code>. A <code>Jio</code> object cannot be modified after
+creation, except to add a user (ie. append <code>Username</code> to the list). Jios are stored in the users.xml with each object
+as an Xml element.</p>
+</div>
+<div class="paragraph">
+<p>Creator (current user) is automatically added to the jio. If the group tag <code>g/</code> is added, users under the group specified is retrieved from <code>UserData</code> and added to the jio.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CreateJioCommandSequenceDiagram.png" alt="CreateJioCommandSequenceDiagram" width="800">
+</div>
+</div>
+<div class="sect4">
+<h5 id="jio-related-commands"><a class="link" href="#jio-related-commands">Jio-related Commands</a></h5>
+<div class="paragraph">
+<p><code>createJio</code> is implemented by creating a <code>Jio</code> object with the specified parameters, but an empty list of <code>Username</code>.
+The <code>Jio</code> object is eventually passed to <code>ModelManager</code>, which adds the current user to the <code>Jio</code> and stores it in <code>UserData</code>.
+Similarly, <code>joinJio</code> relies on <code>ModelManager</code> to add the current user to the jio. It also performs a check that the
+user is not already in the list of <code>Username</code>, otherwise a <code>CommandException</code> is thrown.
+All jio commands require the user to be logged in due to usage of current user, otherwise a <code>NotLoggedInCommandException</code>
+is thrown. <code>joinJio</code> and <code>deleteJio</code> perform additional checks for whether the <code>Jio</code> exists, otherwise a <code>CommandException</code>
+is thrown.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reasons-for-this-implementation"><a class="link" href="#reasons-for-this-implementation">Reasons for this implementation</a></h4>
+<div class="paragraph">
+<p><code>ModelManager</code> exclusively handles all operations related to current user for encapsulation. Thus, the command classes
+do not touch current user at all, but pass <code>Jio</code> objects on to <code>ModelManager</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="alternatives-considered"><a class="link" href="#alternatives-considered">Alternatives Considered</a></h4>
+<div class="sect4">
+<h5 id="aspect-storing-jio"><a class="link" href="#aspect-storing-jio">Aspect: Storing jio</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Jios are stored separately.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Pros: Easy to retrieve jio from storage by searching for jio name.</p>
+</li>
+<li>
+<p>Pros: Jio can listed easily.</p>
+</li>
+<li>
+<p>Cons: Jio creator needs to be stored as an additional attribute if needed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Storing jios in User.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A jio can be identified by its creator</p>
+</li>
+<li>
+<p>Cons: Difficult to list jios. Need to iterate through users.</p>
+</li>
+<li>
+<p>Cons: Hard to retrieve a particular jio.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-storing-people-going-on-jio"><a class="link" href="#aspect-storing-people-going-on-jio">Aspect: Storing people going on jio</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> List of Username.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement and list.</p>
+</li>
+<li>
+<p>Cons: Users must have unique usernames.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Storing a list of User instead.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: All information about User is stored for possible retrieval in the future (eg. to view user timetables).</p>
+</li>
+<li>
+<p>Cons: Difficult to store in Xml file. Users cannot easily be converted in to a single string.</p>
+</li>
+<li>
+<p>Cons: May be storing unnecessary information.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Test cases for manual testing</strong>:
+=== Create a jio</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a jio with vaild parameters</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as chelchia. A jio of the same name has not already been created</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/manualtestjio w/1 d/mon h/1200 a/FineFood</code><br>
+Expected: New jio added: manualtestjio Date: [NUS Week: 1 Day:mon Time:1200] Address: FineFood People: chelchia</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a group jio with valid parameter</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in as chelchia. A group 2103 exists</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/groupjio w/1 d/mon h/1200 a/FineFood g/2103</code><br>
+Expected: New jio added: groupjio Date: [NUS Week: 1 Day:mon Time:1200] Address: FineFood People: chelchia navekom meena567 aiden katespades</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create a jio with same jio name</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>createJio n/manualtestjio w/1 d/mon h/1200 a/FineFood</code><br>
+Expected: A jio with the same name already exists</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="join-a-jio"><a class="link" href="#join-a-jio">Join a jio</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Join a valid jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is not creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>joinJio n/manualtestjio</code><br>
+Expected: Jio joined: manualtestjio</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Join a non-existent jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>joinJio n/randomjio</code><br>
+Expected: This jio does not exist</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-jio"><a class="link" href="#delete-jio">Delete jio</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Delete a valid jio user created</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/manualtestjio</code><br>
+Expected: Jio deleted: manualtestjio</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Delete a valid jio not created by user</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in. User is not creator of jio.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/manualtestjio</code><br>
+Expected: You are not the creator of this jio. Only the creator can delete a jio.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Join a non-existent jio</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: User is logged in.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>deleteJio n/randomjio</code><br>
+Expected: Jio does not exist.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:28:54 UTC</div></div></div></body></html>

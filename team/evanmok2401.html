@@ -286,7 +286,7 @@ Allows you to use Makan Book&#8217;s many features</p>
 <p>Items in square brackets are optional e.g <code>n/NAME [u/USERNAME]</code> can be used as <code>n/Waa Cow u/navekom</code> or as <code>n/Waa Cow</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[u/USERNAME]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>u/navekom</code>, <code>u/katespade u/themyth</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[u/USERNAME]&#8230;&#8203;</code> can represent <code>u/navekom</code>, <code>u/katespade u/themyth</code> etc.</p>
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>u/USERNAME pwd/PASSWORD</code>, <code>pwd/PASSWORD u/USERNAME</code> is also acceptable.</p>
@@ -926,7 +926,7 @@ Expected: User is not currently logged in</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Login into an account and Write a proper review</p>
+<p>Login into an account and write a proper review</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -934,7 +934,7 @@ Expected: User is not currently logged in</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Test case: `writeReview 1 rate/3 rvw/The cold noodles and pork bulgogi were delicious. `<br>
+<p>Test case: <code>writeReview 1 rate/3 rvw/The cold noodles and pork bulgogi were delicious.</code><br>
 Expected: Successfully Wrote Review</p>
 </li>
 </ol>
@@ -952,7 +952,7 @@ Expected: Successfully Wrote Review</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Test case: `writeReview 1 rate/6 rvw/The cold noodles and pork bulgogi were delicious. `<br>
+<p>Test case: <code>writeReview 1 rate/6 rvw/The cold noodles and pork bulgogi were delicious.</code><br>
 Expected: Rating must be a positive integer from 1 to 5 where 1 is the lowest rating and 5, the highest rating.</p>
 </li>
 </ol>
@@ -966,11 +966,11 @@ Expected: Rating must be a positive integer from 1 to 5 where 1 is the lowest ra
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: User is currently logged in and written review is a space " ".</p>
+<p>Prerequisites: User is currently logged in and written review is empty.</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Test case: `writeReview 1 rate/5 rvw/ `<br>
+<p>Test case: <code>writeReview 1 rate/5 rvw/</code><br>
 Expected: Written Reviews can take any values, and it should not be blank.</p>
 </li>
 </ol>
@@ -1003,4 +1003,4 @@ Expected: Written Reviews can take any values, and it should not be blank.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:03:05 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 09:58:00 UTC</div></div></div></body></html>
